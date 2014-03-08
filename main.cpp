@@ -3,6 +3,7 @@
 #include <string>
 #include "input.h"
 #include "create.h"
+#include "getError.h"
 
 using namespace std;  
 int init()
@@ -48,13 +49,13 @@ int main(int argc, char ** argv)
  
   while ( !kbdMouse.quit )        
     {        
-      getInput(&kbdMouse, event);    
+      getInput(kbdMouse, event);    
 
-      doWindowChanges(&kbdMouse,window); 
-      doCameraMove(&kbdMouse,&camera,textureW,textureH);  
-      doAblities(&kbdMouse);
+      doWindowChanges(kbdMouse,window); 
+      doCameraMove(kbdMouse,&camera,textureW,textureH);  
+      doAblities(kbdMouse);
 
-      clearInput(&kbdMouse);
+      clearInput(kbdMouse);
       
 
       if(SDL_RenderCopy(renderer,texture,&camera,NULL) < 0 )
