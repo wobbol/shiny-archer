@@ -6,18 +6,18 @@
 #include "getError.h"
 
 using namespace std;  
+
 int init()
 {
   return SDL_Init(SDL_INIT_VIDEO);        
 }
-
 
 int main(int argc, char ** argv)        
 {              
 
   if(init())
     {
-      printf("wtf SDL_GetError:%s\n",SDL_GetError());
+      getError("Failed to Initalize SDL");
       return 0;
     }  
   SDL_Window *window = createWindow("window name");
@@ -26,8 +26,7 @@ int main(int argc, char ** argv)
 
   int textureW, textureH;
   SDL_QueryTexture(texture, NULL, NULL, &textureW, &textureH);
-
-  printf("%d %dnnnnn\n",textureW,textureH);
+  
   input kbdMouse; 
   kbdMouse.ablity1 = 0;
   kbdMouse.ablity2 = 0;
@@ -59,7 +58,7 @@ int main(int argc, char ** argv)
       
 
       if(SDL_RenderCopy(renderer,texture,&camera,NULL) < 0 )
-	printf("failed to rendercopy: %s\n",SDL_GetError() );
+	getError("Failed to Rendercopy");
       SDL_RenderPresent(renderer);
     }        
             

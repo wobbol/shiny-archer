@@ -1,4 +1,5 @@
 #include <SDL2/SDL.h>
+#include "getError.h"
 #include "create.h"
 SDL_Window* createWindow(const char *name)
 {
@@ -7,7 +8,7 @@ SDL_Window* createWindow(const char *name)
 SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, WINDOW_WIDTH, WINDOW_HIGHT, SDL_WINDOW_FLAGS);
   if (window == NULL)        
     {
-      printf("unable to create window SDL_Error: %s\n",SDL_GetError() );
+      getError("unable to create window ");
       SDL_Quit();
       return NULL;
     }
@@ -20,7 +21,7 @@ SDL_Renderer* createRenderer(SDL_Window* window)
   renderer = SDL_CreateRenderer(window, -1, 0);
   if(renderer == NULL)
     {
-      printf("unable to create render SDL_GetError: %s\n",SDL_GetError() );
+      getError("Failed to create render-er(f-ing sdl)");
       return 0;
     }   
   return renderer;
@@ -32,14 +33,14 @@ SDL_Texture* createTexture(const char* filename,SDL_Renderer* renderer)
   tmpSurface = SDL_LoadBMP(filename);
   if(tmpSurface == NULL)
     {
-      printf("unable to load bmp SDL_GetError: %s\n",SDL_GetError() );
+    getError("Failed to load image to temp surface");
       return NULL;
     }
   SDL_Texture* texture = NULL;
   texture = SDL_CreateTextureFromSurface(renderer,tmpSurface);
   if(texture == NULL)
     {
-      printf("could not make a texture out of surface SDL_GetError:%s\n",
+      getError("Failed to create texture from surface");
 	     SDL_GetError() );
       return NULL;
     }          
