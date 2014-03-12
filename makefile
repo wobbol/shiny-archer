@@ -10,4 +10,4 @@ debug: CC += -ggdb
 debug: binary
 
 binary: main.cpp
-	$(CXX) $(CXXFLAGS) -o sdlgame main.cpp input.cpp create.cpp getError.cpp
+	$(CXX) $(CXXFLAGS) -o bin/sdlgame main.cpp input.cpp create.cpp getError.cpp
