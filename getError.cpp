@@ -2,6 +2,5 @@
 
 
 void getError(const char* mesg){
-printf(mesg);
-printf("SDL_GetError(): %s\n",SDL_GetError());
+printf("%s SDL_GetError(): %s\n",mesg,SDL_GetError());
 }
